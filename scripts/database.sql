@@ -1,9 +1,9 @@
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE
+    edad NUMBER(3) NOT NULL UNIQUE
 );
 
-INSERT INTO usuarios (nombre, email) VALUES
-('Juan Pérez', 'juan@example.com'),
-('María López', 'maria@example.com');
+INSERT INTO usuarios (nombre, edad) VALUES
+('Juan Pérez', 25),
+('María López', 22);
