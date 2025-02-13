@@ -5,5 +5,5 @@ CREATE TABLE IF NOT EXISTS usuarios (
 );
 
 INSERT INTO usuarios (nombre, edad) VALUES
-('Juan Pérez', 25),
+('Hugo Barbón', 25),
 ('María López', 22);
