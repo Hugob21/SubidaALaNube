@@ -1,0 +1,35 @@
+name: Deploy MySQL to Google Cloud SQL
+
+on:
+  push:
+    branches:
+      - main  # Se ejecuta cuando hay cambios en la rama "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Usa una máquina con Ubuntu
+
+    steps:
+      # Paso 1: Clonar el repositorio
+      - name: 🔹 Clonar el repositorio
+        uses: actions/checkout@v3  
+
+      # Paso 2: Instalar MySQL Client
+      - name: 🔹 Instalar MySQL Client
+        run: sudo apt-get install -y mysql-client  
+
+      # Paso 3: Comprobar conexión con MySQL
+      - name: 🔹 Verificar conexión a la base de datos
+        run: |
+          mysql -h ${{ secrets.MYSQL_HOST }} \
+                -u ${{ secrets.MYSQL_USER }} \
+                -p${{ secrets.MYSQL_PASSWORD }} \
+                -e "SHOW DATABASES;"
+
+      # Paso 4: Ejecutar el script SQL
+      - name: 🔹 Ejecutar Script SQL
+        run: |
+          mysql -h ${{ secrets.MYSQL_HOST }} \
+                -u ${{ secrets.MYSQL_USER }} \
+                -p${{ secrets.MYSQL_PASSWORD }} \
+                ${{ secrets.MYSQL_DATABASE }} < scripts/database.sql
